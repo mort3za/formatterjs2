@@ -76,7 +76,7 @@ function Formatter(el, opts) {
   // Persistence
   if (self.opts.persistent) {
     // Format on start
-    self._processKey('', false);
+    self._processKey('', false, true);
     self.el.blur();
 
     // Add Listeners
@@ -295,6 +295,10 @@ Formatter.prototype._nextPos = function () {
 // instance pattern. Also responsible for updating
 //
 Formatter.prototype._formatValue = function (ignoreCaret) {
+
+  // Don't format readonly and disabled fields
+  if(this.el.readOnly || this.el.disabled) return;
+  
   // Set caret pos
   this.newPos = this.sel.end + this.delta;
 
@@ -328,7 +332,7 @@ Formatter.prototype._removeChars = function () {
   if (this.sel.end > this.focus) {
     this.delta += this.sel.end - this.focus;
   }
-  
+
   // Account for shifts during removal
   var shift = 0;
 
@@ -459,5 +463,6 @@ Formatter.prototype._specFromSinglePattern = function (patternStr) {
 
 // Expose
 module.exports = Formatter;
+
 
 

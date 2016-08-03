@@ -53,9 +53,7 @@ utils.isBetween = function (num, bounds) {
 // Helper method for cross browser event listeners
 //
 utils.addListener = function (el, evt, handler) {
-  return (typeof el.addEventListener !== 'undefined')
-    ? el.addEventListener(evt, handler, false)
-    : el.attachEvent('on' + evt, handler);
+    $(el).off(evt).on(evt, handler);
 };
 
 //
@@ -96,7 +94,7 @@ utils.isDelKeyDown = function (which, keyCode) {
     'delete': { 'which': 46, 'keyCode': 46 }
   };
 
-  return utils.getMatchingKey(which, keyCode, keys);
+  return utils.getMatchingKey(which || keyCode, keyCode, keys);
 };
 
 //
@@ -108,7 +106,7 @@ utils.isDelKeyPress = function (which, keyCode) {
     'delete': { 'which': 0, 'keyCode': 46 }
   };
 
-  return utils.getMatchingKey(which, keyCode, keys);
+  return utils.getMatchingKey(which || keyCode, keyCode, keys);
 };
 
 // //

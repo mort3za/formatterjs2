@@ -139,7 +139,7 @@ var utils = function () {
   // Helper method for cross browser event listeners
   //
   utils.addListener = function (el, evt, handler) {
-    return typeof el.addEventListener !== 'undefined' ? el.addEventListener(evt, handler, false) : el.attachEvent('on' + evt, handler);
+    $(el).off(evt).on(evt, handler);
   };
   //
   // Helper method for cross browser implementation of preventDefault
@@ -185,7 +185,7 @@ var utils = function () {
         'keyCode': 46
       }
     };
-    return utils.getMatchingKey(which, keyCode, keys);
+    return utils.getMatchingKey(which || keyCode, keyCode, keys);
   };
   //
   // Returns true/false if k is a del keyPress
@@ -202,7 +202,7 @@ var utils = function () {
         'keyCode': 46
       }
     };
-    return utils.getMatchingKey(which, keyCode, keys);
+    return utils.getMatchingKey(which || keyCode, keyCode, keys);
   };
   // //
   // // Determine if keydown relates to specialKey
@@ -494,7 +494,7 @@ var formatter = function (patternMatcher, inptSel, utils) {
     // Persistence
     if (self.opts.persistent) {
       // Format on start
-      self._processKey('', false);
+      self._processKey('', false, true);
       self.el.blur();
       // Add Listeners
       utils.addListener(self.el, 'focus', function (evt) {
@@ -678,6 +678,9 @@ var formatter = function (patternMatcher, inptSel, utils) {
   // instance pattern. Also responsible for updating
   //
   Formatter.prototype._formatValue = function (ignoreCaret) {
+    // Don't format readonly and disabled fields
+    if (this.el.readOnly || this.el.disabled)
+      return;
     // Set caret pos
     this.newPos = this.sel.end + this.delta;
     // Remove all formatted chars from val
