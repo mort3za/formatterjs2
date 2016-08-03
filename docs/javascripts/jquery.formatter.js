@@ -5,7 +5,7 @@
  *
  * thanks to digitalBush/jquery.maskedinput for some of the trickier
  * keycode handling
- */ 
+ */
 
 //
 // Uses CommonJS, AMD or browser globals to create a jQuery plugin.
@@ -217,7 +217,7 @@ var utils = function () {
     //     'uparrow': { 'which': 38, 'keyCode': 38 },
     //     'rightarrow': { 'which': 39, 'keyCode': 39 },
     //     'downarrow': { 'which': 40, 'keyCode': 40 },
-    //     'F5': { 'which': 116, 'keyCode': 116 }
+    //     'F5': { 'which': 0, 'keyCode': 116 }
     //   };
     //   return utils.getMatchingKey(which, keyCode, keys);
     // };
@@ -259,7 +259,7 @@ var utils = function () {
             'keyCode': 40
           },
           'F5': {
-            'which': 116,
+            'which': 0,
             'keyCode': 116
           }
         };
@@ -391,7 +391,7 @@ var inptSel = function () {
             end: length
           };
         }
-        // Note: moveStart usually returns the units moved, which 
+        // Note: moveStart usually returns the units moved, which
         // one may think is -length, however, it will stop when it
         // gets to the begin of the range, thus giving us the
         // negative value of the pos.
