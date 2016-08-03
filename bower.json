@@ -1,5 +1,5 @@
 {
-  "name": "formatter.js",
+  "name": "formatterjs2",
   "version": "0.1.5",
   "devDependencies": {
     "easy-amdtest": "~0.0.1",
@@ -12,12 +12,31 @@
     "Gruntfile.js",
     "src",
     "docs",
-    "test"
+    "test",
+    "node_modules",
+    "bower_components",
+    "tests"
   ],
   "main": [
     "dist/formatter.js",
     "dist/formatter.min.js",
     "dist/jquery.formatter.js",
     "dist/jquery.formatter.min.js"
-  ]
+  ],
+  "homepage": "https://github.com/mort3za/formatterjs2",
+  "authors": [
+    "Morteza <m.ziaeemehr@gmail.com>"
+  ],
+  "description": "A fork of formatter.js, maintained with updates and pull requests.",
+  "keywords": [
+    "javascript",
+    "formatter",
+    "input",
+    "format",
+    "text",
+    "fields",
+    "placeholder",
+    "formatter"
+  ],
+  "license": "MIT"
 }
